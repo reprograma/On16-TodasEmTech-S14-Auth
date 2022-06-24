@@ -352,7 +352,7 @@ const findAllCoaches = async (req, res) => {
 ```
 - Para testar via postman, passar bearer token no header de autenticação $ Bearer TOKEN_JWT_AQUI
 
-## Para casa!
+# Exercício para casa!
 
 ![casa](https://gerarmemes.s3.us-east-2.amazonaws.com/memes/thumb/ffad82c9.jpg)
 
