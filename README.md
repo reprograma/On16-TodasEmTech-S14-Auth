@@ -60,6 +60,8 @@ Site com a função hash: https://passwordsgenerator.net/sha1-hash-generator/
 
 ## Criptografia
 
+![alan_turing_e_joan_clarke](https://www.cutedrop.com.br/wp-content/uploads/2015/10/alan-e-clarke.jpg)
+
 Quando falamos de criptografar logo pensamos em algo super complexo, mas isso nada mais é do que codificar uma mensagem que você não quer que pessoas não autorizadas tenha acesso. 
 
 Um filme bem bacana que fala desse tema e que vale a pena assistir é o Jogo da Imitação, que conta sobre o matemático Alan Turing e a criptoanalista Joan Clarke na Segunda Guerra Mundial, quando desenvolveram uma máquina que foi capaz de descriptografar (revelar) mensagens de comunicação da Alemanha Nazista.
@@ -126,6 +128,7 @@ Os JWTs são muito utilizados no processo de autenticação permitindo que o pro
 O cabeçalho é codificado utilizando o algoritmo Base64Url, antes de compor um JWT.
 
 ![jwt_estrutura](https://supertokens.com/static/b0172cabbcd583dd4ed222bdb83fc51a/9af93/what-is-jwt.png)
+![jwt_estrutura_2](https://research.securitum.com/wp-content/uploads/sites/2/2019/10/jwt_ng1_en.png)
 
 #### Header
 
