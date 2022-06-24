@@ -235,7 +235,7 @@ app.use(colaboradorasRoutes) // aqui
 - Criar controller colaboradorasController com a função create:
 
 ```
-const Colaboradoras = require('../models/colaboradoras');
+const Colaboradoras = require('../models/colaboradorasModel');
 const bcrypt = require('bcrypt');
 
 const create = (req, res) => {
