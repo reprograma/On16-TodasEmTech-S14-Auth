@@ -347,3 +347,7 @@ const findAllCoaches = async (req, res) => {
 ![casa](https://gerarmemes.s3.us-east-2.amazonaws.com/memes/thumb/ffad82c9.jpg)
 
 Devemos utilizar o projeto da aula anterior (S13) conforme fizemos em aula e colocarmos uma rota para login e proteger todas as rotas de coach e pokedex, exigindo um token de autorização.
+
+# Apresentação em Slides da Aula
+
+https://docs.google.com/presentation/d/1AYw0QCtyH1c8sr_Lg6Wop_2---Skkz9pOp-C6t2JCjs/edit?usp=sharing
