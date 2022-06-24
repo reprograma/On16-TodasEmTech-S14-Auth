@@ -172,7 +172,7 @@ possibilidade de sucesso em ataques dessa natureza estarão quase nulos.
 
 ![mao_massa](https://espacojacyra.com.br/wp-content/uploads/2017/05/Untitled-1-1.png)
 
-Utilizando o projeto da aula anterior, pasta ***On16-TodasEmTech-S13-Projeto-3-CRUD-BD***, vamos evoluí-lo para criar autenticação utilizando JWT. Para isso vamos seguir os passos:
+Utilizando o projeto da aula anterior, pasta ***S13-Projeto-3-CRUD-BD*** (https://github.com/reprograma/On16-TodasEmTech-S14-Auth/tree/master/S13-Projeto-3-CRUD-BD), vamos evoluí-lo para criar autenticação utilizando JWT. Para isso vamos seguir os passos:
 
 ### Instalar todas as bibliotecas que iremos utilizar
 ```
