@@ -318,6 +318,11 @@ module.exports = {
 router.post('/colaboradoras/login', controller.login);
 ```
 
+- Carregar as variáveis de ambiente no projeto, no início do arquivo app.js:
+```
+require('dotenv-safe').config();
+```
+
 - Criar função de login no arquivo colaboradorasController: 
 
 ```
@@ -350,10 +355,7 @@ module.exports = {
 ```
 
 ### Proteger rota get All coachRoutes
-- Carregar as variáveis de ambiente no projeto, no arquivo coachRoutes.js:
-```
-$ require('dotenv-safe').config();
-```
+
 - No arquivo coachController.js adicionar:
 ```
 const SECRET = process.env.SECRET //carrega secret do arquivo de env
