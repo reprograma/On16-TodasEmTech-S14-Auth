@@ -43,7 +43,11 @@ Para armazenar senhas na base de dados, por exemplo, podemos utilizar um hash. M
 
 ## Hash
 
-- Hash é uma string (texto) criptografada e é gerada a partir de uma função de Hash. O hash pode ter diversas utilidades, como por exemplo, armazenar uma senha numa base de dados para uma posterior checagem. Importante: uma função de hash não tem volta, uma vez que você transforma uma string em um hash, a partir de uma função de hash, não é possível transformar novamente na string original.
+![hash](https://criptofy.com/wp-content/uploads/2019/10/hashing-1024x449.png)
+
+- Hash é uma string (texto) criptografada e é gerada a partir de uma função de Hash. O hash pode ter diversas utilidades, como por exemplo, armazenar uma senha numa base de dados para uma posterior checagem.
+
+> Importante: uma função de hash não tem volta, uma vez que você transforma uma string em um hash, a partir de uma função de hash, não é possível transformar novamente na string original.
 
 Os algoritmos mais conhecidos para hash são: MD5, SHA-1 e SHA-2.
 
