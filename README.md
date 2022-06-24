@@ -145,7 +145,9 @@ O cabeçalho é codificado utilizando o algoritmo Base64Url, antes de compor um 
 #### Signature
 
 ![Signature_1](https://i.imgur.com/cVggV3E.png)
-![Signature_2](https://i.imgur.com/3VjcFVK.png)
+
+#### Estrutura final
+![estrutura_jwt](https://i.imgur.com/3VjcFVK.png)
 
 
 ### Vulnerabilidades
