@@ -311,7 +311,6 @@ module.exports = {
 
 ```
 
-
 - Criar rota de login de colaboradora no arquivo colaboradorasRouter.js:
 
 ```
@@ -338,6 +337,8 @@ const login = (req, res) => {
         const senhaValida = bcrypt.compareSync(req.body.senha, colaboradora.senha);
 
         if (!senhaValida) {
+        /* 403 Forbidden é um código de resposta HTTP da classe de respostas de erro do cliente, a qual indica que o servidor recebeu a requisição e foi capaz de identificar o autor, porém não autorizou a emissão de um resposta. Os motivos para a proibição do acesso podem ser especificados no corpo da resposta.
+        */
             return res.status(403).send('que senha é essa hein');
         }
         const token = jwt.sign({ email: req.body.email }, SECRET);
