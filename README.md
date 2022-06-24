@@ -222,6 +222,12 @@ module.exports = router;
 - Criar adicionar routes/colaboradorasRoute.js no arquivo app.js:
 
 ```
+const coachRoutes = require('./routes/coachRoutes')
+const pokedexRoutes = require('./routes/pokedexRoutes')
+const colaboradorasRoutes = require('./routes/colaboradorasRoute') // aqui
+
+// { restante do codigo }
+
 app.use(coachRoutes)
 app.use(pokedexRoutes)
 app.use(colaboradorasRoutes) // aqui
