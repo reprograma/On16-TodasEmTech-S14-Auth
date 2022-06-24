@@ -185,7 +185,7 @@ $ npm install dotenv-safe -- save // para carregar o arquivo .env
 - Criar arquivo .env.example e .env (adicionar no .gitignore), ambos com chave chamada SECRET $ SECRET=chave_rsa_aqui_sem_aspas
 - Gerar chave pelo https://travistidwell.com/jsencrypt/demo/ e guardar a chave pública no arquivo env
 
-### Criar rotas para colaboradoras (criar, listar e login)
+### Criar rotas para colaboradoras (criar, listar, deletar e login)
 
 - Criar model de colaboradoras com id, nome, email e senha
 ```
@@ -284,6 +284,34 @@ module.exports = {
 ```
 - Testar trazer as colaboradas via Postman
 
+- Criar rota para deletar colaboradora no arquivo colaboradorasRouter.js:
+```
+router.delete('/colaboradoras/:id', controller.deleteById);
+```
+
+- Criar função de deletar no arquivo colaboradorasController: 
+```
+const deleteById = async (req, res) => {
+    try {
+        const { id } = req.params
+        await Colaboradoras.findByIdAndDelete(id)
+        const message = `A colaboradora com o ${id} foi deletada com sucesso!`
+        res.status(200).json({ message })
+    } catch (error) {
+        console.error(error)
+        res.status(500).json({ message: error.message })
+    }
+};
+
+module.exports = {
+    create,
+    getAll,
+    deleteById,
+}
+
+```
+
+
 - Criar rota de login de colaboradora no arquivo colaboradorasRouter.js:
 
 ```
@@ -315,6 +343,7 @@ const login = (req, res) => {
 module.exports = {
     create,
     getAll,
+    deleteById
     login,
 }
 
