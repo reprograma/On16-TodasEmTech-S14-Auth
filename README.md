@@ -355,14 +355,14 @@ module.exports = {
 
 ```
 
-### Proteger rota get All coachRoutes
+### Proteger rota GET treinadores do coachRoutes
 
 - No arquivo coachController.js adicionar:
 ```
 const SECRET = process.env.SECRET //carrega secret do arquivo de env
 const jwt = require('jsonwebtoken'); // carrega lib jwt
 ```
-- Criar método de autenticação em getAll:
+- Criar método de autenticação em findAllCoaches:
 ```
 const findAllCoaches = async (req, res) => {
   try {
@@ -374,12 +374,16 @@ const findAllCoaches = async (req, res) => {
 
     const token = authHeader.split(' ')[1]; //reserva o token em uma variavel
 
-    await jwt.verify(token, SECRET, function (erro) { //utiliza a lib jwt para verificar se o token é valido
+    await jwt.verify(token, SECRET, async function (erro) { //utiliza a lib jwt para verificar se o token é valido
 
       if (erro) { // se for inválido retorna 403
+      /* 403 Forbidden é um código de resposta HTTP da classe de respostas de erro do cliente, a qual indica que o servidor recebeu a requisição e foi capaz de identificar o autor, porém não autorizou a emissão de um resposta. Os motivos para a proibição do acesso podem ser especificados no corpo da resposta.
+      */
         return res.status(403).send('Nope');
       }
-      return CoachModel.find().then(allCoaches => res.status(200).json(allCoaches)) // se estiver tudo certo retorna os treinadores
+      // se estiver tudo certo retorna os treinadores
+      const allCoaches = await CoachModel.find()
+      res.status(200).json(allCoaches)
 
     })
   } catch (error) {
