@@ -176,9 +176,9 @@ Utilizando o projeto da aula anterior, pasta ***S13-Projeto-3-CRUD-BD*** (https:
 
 ### Instalar todas as bibliotecas que iremos utilizar
 ```
-$ npm install jsonwebtoken -- save
-$ npm install bcrypt -- save
-$ npm install dotenv-safe -- save
+$ npm install jsonwebtoken -- save // para utilizar o jwt
+$ npm install bcrypt -- save // para encriptar as senhas
+$ npm install dotenv-safe -- save // para carregar o arquivo .env
 ```
 ### Arquivos env
 
