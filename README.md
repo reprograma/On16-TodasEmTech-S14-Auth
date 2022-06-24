@@ -13,7 +13,9 @@ Nas aulas anteriores você aprendeu sobre rotas POST, GET, PATCH, PUT e DELETE. 
 
 Isso é extremamente perigoso, não somente para a segurança da aplicação em si, mas para todo o negócio! Imagina que você está desenvolvendo um produto para um cliente (que pode ser de qualquer nicho, como por exemplo, financeiro, área médica, educação etc) e os dados dos clientes são vazados ou mesmo alterados na base de dados? É um problema bem grande, certo? Por isso é importante que tenhamos um mínimo (e máximo) de cuidado com a segurança do que desenvolvemos.
 
-Mas como você acha que podemos aumentar a segurança das rotas nas APIs? Podemos criar um login para os usuários e somente esses usuários que estão logados (autenticados) vão poder fazer chamadas para nossas rotas.
+> Mas como você acha que podemos aumentar a segurança das rotas nas APIs?
+
+Podemos criar um login para os usuários e somente esses usuários que estão logados (autenticados) vão poder fazer chamadas para nossas rotas.
 
 ## Login - Autenticação
 
@@ -35,12 +37,11 @@ Mas como funciona isso?
 
 Um analogia que podemos fazer para exemplificar uma autenticação e autorização é um vôo. O passageiro faz a autenticação na entrada do vôo quando sua identidade é checada, mas não necessariamente esse passageiro tem autorização para acessar a primeira classe.
 
-Mas como você armazenaria a senha desse usuário na base de dados para uma autenticação?
-
-
-## Hash
+> Mas como você armazenaria a senha desse usuário na base de dados para uma autenticação?
 
 Para armazenar senhas na base de dados, por exemplo, podemos utilizar um hash. Mas o que seria hash?
+
+## Hash
 
 - Hash é uma string (texto) criptografada e é gerada a partir de uma função de Hash. O hash pode ter diversas utilidades, como por exemplo, armazenar uma senha numa base de dados para uma posterior checagem. Importante: uma função de hash não tem volta, uma vez que você transforma uma string em um hash, a partir de uma função de hash, não é possível transformar novamente na string original.
 
