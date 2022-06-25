@@ -183,7 +183,7 @@ $ npm install dotenv-safe -- save // para carregar o arquivo .env
 ### Arquivos env
 
 - Criar arquivo .env.example e .env (adicionar no .gitignore), ambos com chave chamada SECRET $ SECRET=chave_rsa_aqui_sem_aspas
-- Gerar chave pelo https://travistidwell.com/jsencrypt/demo/ e guardar a chave pública no arquivo env
+- Utilizar uma secret que pode ser gerada pelo https://passwordsgenerator.net/sha1-hash-generator/ e guardar essa secret no arquivo env
 
 ### Criar rotas para colaboradoras (criar, listar, deletar e login)
 
