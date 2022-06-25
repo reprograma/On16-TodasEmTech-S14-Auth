@@ -248,7 +248,7 @@ const create = (req, res) => {
             res.status(500).send({ message: err.message })
         }
 
-        res.status(201).send(colaboradora.toJSON())
+        res.status(201).send(colaboradora)
     })
 };
 
