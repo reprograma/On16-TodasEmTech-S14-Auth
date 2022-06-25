@@ -90,7 +90,7 @@ Os algoritmos de criptografia assimétrica utilizam duas chaves complementares p
 
 Um grande diferencial dessa classe de algoritmos é que um dado criptografado com uma chave pode apenas ser descriptografado com outra e vice-versa. Essa característica permite que estranhos mantenham uma comunicação segura mesmo que o meio de comunicação não seja tão seguro. Além disso, não há a necessidade de um meio seguro para que a troca de chave pública ocorra.
 
-![criptografia-assimetrica](http://www.universidadejava.com.br/images/2020-05-23-criptografia-assimetrica-01.png)
+![criptografia-assimetrica](https://i.imgur.com/MUfQ2eO.png)
 
 Algoritmos de criptografia assimétrica são muito custosos em termos de CPU, por esse motivo as comunicações, normalmente, os utilizam como meio de troca de chave simétrica. Diminuindo, assim o tempo e recursos da CPU. Na prática, a criptografia assimétrica é utilizada uma vez para transportar a chave de criptografia simétrica até seu destino para passar a ser utilizada.
 
