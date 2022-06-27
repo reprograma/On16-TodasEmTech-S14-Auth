@@ -13,6 +13,9 @@
  * const team = req.body.team
  */
 const CoachModel = require('../models/coachModel')
+const jwt = require("jsonwebtoken")
+const SECRET = process.env.SECRET
+
 const createCoach = async (req, res) => {
   try {
     const { name, team, region, age, gender } = req.body
@@ -91,8 +94,6 @@ const deleteCoach = async (req, res) => {
   }
 }
 
-const jwt = require('jsonwebtoken');
-const SECRET = process.env.SECRET;
 
 const login = (req, res) => {
   Colaboradoras.findOne({ email: req.body.email }, function (error, colaboradora) {
