@@ -1,5 +1,8 @@
 const PokedexModel = require('../models/pokedexModel')
 const CoachModel = require('../models/coachModel')
+const jwt = require("jsonwebtoken")
+const SECRET = process.env.SECRET
+
 
 const createPokemon = async (req, res) => {
    try {
@@ -42,14 +45,25 @@ const findAllPokemons = async (req, res) => {
 
 const findPokemonById = async(req, res) => {
   try {
-    const findPokemon = await PokedexModel
-      .findById(req.params.id).populate('coach')
-    
+      const authHeader = req.get('authorization')
+  
+      if (!authHeader) {
+        return res.status(401).json({ message: "cadê o auth???" })
+      }
+      const token = authHeader.split(" ")[1]
+      await jwt.verify(token, SECRET, async function (erro) {
+        if (erro) {
+          return res.status(403).send("não funcionou")
+        }
+        const findPokemon = await PokedexModel
+        .findById(req.params.id).populate('coach')
+
      if (findPokemon == null) {
       return res.status(404).json({ message: "pokemon não encontrado."})
      }
 
       res.status(200).json(findPokemon)
+    })
   } catch (error) {
     res.status(500).json({ message: error.message})
   }
