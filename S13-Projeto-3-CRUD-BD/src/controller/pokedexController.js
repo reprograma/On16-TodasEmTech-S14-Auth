@@ -3,7 +3,6 @@ const CoachModel = require('../models/coachModel')
 const jwt = require("jsonwebtoken")
 const SECRET = process.env.SECRET
 
-
 const createPokemon = async (req, res) => {
   try {
     const { coachId, name, type, abilities, description } = req.body //  <-
