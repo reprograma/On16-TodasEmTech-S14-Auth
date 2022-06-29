@@ -182,7 +182,7 @@ $ npm install dotenv-safe -- save // para carregar o arquivo .env
 ```
 ### Arquivos env
 
-- Criar arquivo .env.example e .env (adicionar no .gitignore), ambos com chave chamada SECRET $ SECRET=chave_rsa_aqui_sem_aspas
+- Criar arquivo .env.example e .env (adicionar no .gitignore), ambos com chave chamada SECRET $ SECRET=chave_aqui_sem_aspas
 - Utilizar uma secret que pode ser gerada pelo https://passwordsgenerator.net/sha1-hash-generator/ e guardar essa secret no arquivo env
 
 ### Criar rotas para colaboradoras (criar, listar, deletar e login)
@@ -402,7 +402,8 @@ Devemos utilizar o projeto da aula anterior (S13), conforme fizemos em aula, e c
 
 # Apresentação em Slides da Aula
 
-> https://docs.google.com/presentation/d/1AYw0QCtyH1c8sr_Lg6Wop_2---Skkz9pOp-C6t2JCjs/edit?usp=sharing
+> Aula: https://docs.google.com/presentation/d/1AYw0QCtyH1c8sr_Lg6Wop_2---Skkz9pOp-C6t2JCjs/edit?usp=sharing
+> Revisão: https://docs.google.com/presentation/d/17SapaGgQg1dj7e71Iw5YILhudv_FehCBilKcPlc3ulA/edit?usp=sharing
 
 # Leitura Extra Obrigatória
 
