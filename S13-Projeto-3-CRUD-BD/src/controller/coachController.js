@@ -106,10 +106,21 @@ const updateCoach = async (req, res) => {
 
 const deleteCoach = async (req, res) => {
    try {
+       const authHeader = req.get('Authorization')
+       if(!authHeader){
+        return res.status(401).send('Cade o authorization?')
+       }
+       const token = authHeader.split(' ')[1]
+
+       await jwt.verify(token, SECRET, async function(erro){
+        if(erro){
+          return res.status(403).send('Não vai rolar')
+        }
        const { id } = req.params
        await CoachModel.findByIdAndDelete(id)
        const message = `O treinador com o ${id} foi deletado com sucesso!`
-      res.status(200).json({ message })
+       res.status(200).json({ message })
+      })
    } catch (error) {
      console.error(error)
      res.status(500).json({ message: error.message })
