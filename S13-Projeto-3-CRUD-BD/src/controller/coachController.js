@@ -12,9 +12,28 @@
  * const name = req.body.name
  * const team = req.body.team
  */
+const { JsonWebTokenError } = require('jsonwebtoken')
 const CoachModel = require('../models/coachModel')
+const jwt = require('jsonwebtoken')
+const SECRET = process.env.SECRET
+
+
 const createCoach = async (req, res) => {
    try {
+      const autoHeader = req.get('authorization')
+
+      if(!autoHeader){
+        res.status(401).send('Não foi passado o authorization')
+      }
+
+      const token = autoHeader.split(' ')[1]
+
+      await jwt.verify(token, SECRET, async function (err) {
+        if (err) {
+          res.status(403).send('token inválido')
+        }
+      }) 
+
       const { name, team, region, age, gender } = req.body
 
       const newCoach = new CoachModel({
@@ -32,8 +51,22 @@ const createCoach = async (req, res) => {
 
 const findAllCoaches = async (req, res) => {
   try {
-    const allCoaches = await CoachModel.find()
-    res.status(200).json(allCoaches)
+    const authHeader = req.get('authorization')
+
+    if (!authHeader) {
+      res.status(401).send('Não foi passado o autothorization')
+    }
+    const token = authHeader.split(' ')[1]
+
+    await jwt.verify(token, SECRET, async function (err) {
+      if (err) {
+        res.status(403).send('Não vai rolar')
+      }
+
+      const allCoaches = await CoachModel.find()
+      res.status(200).json(allCoaches)
+    })
+
   } catch(error) {
     console.error(error)
     res.status(500).json({ message: error.message})
@@ -42,6 +75,19 @@ const findAllCoaches = async (req, res) => {
 
 const findCoachById = async (req, res) => {
    try {
+    const autoHeader = req.get('authorization')
+    
+    if (!autoHeader) {
+      res.status(401).send('Não foi passado o autothorization')
+    }
+    const token = autoHeader.split(' ')[1]
+
+    await jwt.verify(token, SECRET, async function (err){
+      if(err) {
+        res.status(403).send('Não vai rolar')
+      }
+    })
+
      const findCoach = await CoachModel.findById(req.params.id)
      res.status(200).json(findCoach)
    } catch (error) {
@@ -52,6 +98,19 @@ const findCoachById = async (req, res) => {
 
 const updateCoach = async (req, res) => {
   try {
+    const autoHeader = req.get('authorization')
+    
+    if (!autoHeader) {
+      res.status(401).send('Não foi passado o autothorization')
+    }
+    const token = autoHeader.split(' ')[1]
+
+    await jwt.verify(token, SECRET, async function (err){
+      if(err) {
+        res.status(403).send('Não vai rolar')
+      }
+    })
+
     const { name, age, region, team, gender } = req.body
     const updatedCoach = await CoachModel
     .findByIdAndUpdate(req.params.id, {
@@ -66,6 +125,19 @@ const updateCoach = async (req, res) => {
 
 const deleteCoach = async (req, res) => {
    try {
+    const autoHeader = req.get('authorization')
+    
+    if (!autoHeader) {
+      res.status(401).send('Não foi passado o autothorization')
+    }
+    const token = autoHeader.split(' ')[1]
+
+    await jwt.verify(token, SECRET, async function (err){
+      if(err) {
+        res.status(403).send('Não vai rolar')
+      }
+    })
+
        const { id } = req.params
        await CoachModel.findByIdAndDelete(id)
        const message = `O treinador com o ${id} foi deletado com sucesso!`
@@ -76,6 +148,12 @@ const deleteCoach = async (req, res) => {
    }
 }
 
+
+
 module.exports =  {
-  createCoach, findAllCoaches, updateCoach, deleteCoach, findCoachById
+  createCoach, 
+  findAllCoaches, 
+  updateCoach, 
+  deleteCoach, 
+  findCoachById
 }

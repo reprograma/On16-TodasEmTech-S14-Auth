@@ -1,8 +1,25 @@
 const PokedexModel = require('../models/pokedexModel')
 const CoachModel = require('../models/coachModel')
+const jwt = require('jsonwebtoken')
+const SECRET = process.env.SECRET
+
 
 const createPokemon = async (req, res) => {
    try {
+    const autoHeader = req.get('authorization')
+
+    if(!autoHeader) {
+      res.status(401).send('É necessário passar um authorization')
+    }
+
+    const token = autoHeader.split(' ')[1]
+
+    await jwt.verify(token, SECRET, async function(err) {
+      if(err) {
+        res.status(403).send('Token inválido')
+      }
+    })
+
      const { coachId, name, type, abilities, description } = req.body //  <-
      
      if (!coachId) {
@@ -33,6 +50,20 @@ const createPokemon = async (req, res) => {
 
 const findAllPokemons = async (req, res) => {
    try {
+    const autoHeader = req.get('authorization')
+
+    if(!autoHeader) {
+      res.status(401).send('É necessário passar um authorization')
+    }
+
+    const token = autoHeader.split(' ')[1]
+
+    await jwt.verify(token, SECRET, async function(err) {
+      if(err) {
+        res.status(403).send('Token inválido')
+      }
+    })
+
       const allPokemons = await PokedexModel.find().populate('coach')
       res.status(200).json(allPokemons)
    } catch (error) {
@@ -42,6 +73,20 @@ const findAllPokemons = async (req, res) => {
 
 const findPokemonById = async(req, res) => {
   try {
+    const autoHeader = req.get('authorization')
+
+    if(!autoHeader) {
+      res.status(401).send('É necessário passar um authorization')
+    }
+
+    const token = autoHeader.split(' ')[1]
+
+    await jwt.verify(token, SECRET, async function(err) {
+      if(err) {
+        res.status(403).send('Token inválido')
+      }
+    })
+
     const findPokemon = await PokedexModel
       .findById(req.params.id).populate('coach')
     
@@ -63,6 +108,20 @@ const findPokemonById = async(req, res) => {
  */
 const updatePokemonById = async (req, res) => {
   try {
+    const autoHeader = req.get('authorization')
+
+    if(!autoHeader) {
+      res.status(401).send('É necessário passar um authorization')
+    }
+
+    const token = autoHeader.split(' ')[1]
+
+    await jwt.verify(token, SECRET, async function(err) {
+      if(err) {
+        res.status(403).send('Token inválido')
+      }
+    })
+
     const { id } = req.params
     const { coachId, name, type, abilities, description } = req.body
     const findPokemon = await PokedexModel.findById(id)
