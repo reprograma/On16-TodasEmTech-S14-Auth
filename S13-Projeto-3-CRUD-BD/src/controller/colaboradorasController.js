@@ -28,7 +28,7 @@ const getAll = (req, res) => {
 const deleteById = async (req, res) => {
     try {
         const { id } = req.params
-        await Colaboradoras.findByIdAndDelete(id)
+        await ColaboradorasModel.findByIdAndDelete(id)
         const message = `A colaboradora com o ${id} foi deletada com sucesso!`
         res.status(200).json({ message })
     } catch (error) {
@@ -38,7 +38,7 @@ const deleteById = async (req, res) => {
 }
 
 const login = (req, res) => {
-    Colaboradoras.findOne({ email: req.body.email }, function (error, colaboradora) {
+    ColaboradorasModel.findOne({ email: req.body.email }, function (error, colaboradora) {
         if (!colaboradora) {
             return res.status(404).send(`Não existe colaboradora com o email ${req.body.email}`);
         }
