@@ -91,6 +91,16 @@ const findPokemonById = async(req, res) => {
 
 const updatePokemonById = async (req, res) => {
   try {
+    const authHeader = req.get('authorization')
+    if(!authHeader){
+      return res.status(401).send('Cade o authorization?')
+    }
+    const token = authHeader.split(' ')[1]
+
+    await jwt.verify(token, SECRET, async function(erro){
+      if(erro){
+        return res.status(403).send('Não vai rolar')
+      }
     const { id } = req.params
     const { coachId, name, type, abilities, description } = req.body
     const findPokemon = await PokedexModel.findById(id)
@@ -112,6 +122,7 @@ const updatePokemonById = async (req, res) => {
 
     const savedPokemon = await findPokemon.save()
     res.status(200).json(savedPokemon)
+    })
   } catch (error) {
     console.error(error)
     res.status(500).json({ message: error.message })
