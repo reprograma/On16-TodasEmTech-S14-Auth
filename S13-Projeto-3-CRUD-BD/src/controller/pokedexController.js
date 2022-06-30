@@ -1,57 +1,70 @@
 const PokedexModel = require('../models/pokedexModel')
 const CoachModel = require('../models/coachModel')
+const jwt = require("jsonwebtoken")
+const SECRET = process.env.SECRET
 
 const createPokemon = async (req, res) => {
-   try {
-     const { coachId, name, type, abilities, description } = req.body //  <-
-     
-     if (!coachId) {
-       return res.status(400).json({ message: 'É obrigatorio o id do treinador'})
-      }
+  try {
+    const { coachId, name, type, abilities, description } = req.body //  <-
 
-      const findCoach = await CoachModel.findById(coachId)
-      
-     if (!findCoach) {
-      return res.status(404).json({ message: 'Treinador não foi encontrado'})
-     }
+    if (!coachId) {
+      return res.status(400).json({ message: 'É obrigatorio o id do treinador' })
+    }
 
-     // -->
-     const newPokemon = new PokedexModel({
+    const findCoach = await CoachModel.findById(coachId)
+
+    if (!findCoach) {
+      return res.status(404).json({ message: 'Treinador não foi encontrado' })
+    }
+
+    // -->
+    const newPokemon = new PokedexModel({
       coach: coachId,
       name, type, abilities, description
-     })
+    })
 
-     const savedPokemon = await newPokemon.save()
+    const savedPokemon = await newPokemon.save()
 
-     res.status(200).json(savedPokemon)
+    res.status(200).json(savedPokemon)
 
-   } catch (error) {
+  } catch (error) {
     console.error(error)
     res.status(500).json({ message: error.message })
-   }
+  }
 }
 
 const findAllPokemons = async (req, res) => {
-   try {
-      const allPokemons = await PokedexModel.find().populate('coach')
-      res.status(200).json(allPokemons)
-   } catch (error) {
-    res.status(500).json({ message: error.message})
-   }
+  try {
+    const allPokemons = await PokedexModel.find().populate('coach')
+    res.status(200).json(allPokemons)
+  } catch (error) {
+    res.status(500).json({ message: error.message })
+  }
 }
 
-const findPokemonById = async(req, res) => {
+const findPokemonById = async (req, res) => {
   try {
-    const findPokemon = await PokedexModel
-      .findById(req.params.id).populate('coach')
-    
-     if (findPokemon == null) {
-      return res.status(404).json({ message: "pokemon não encontrado."})
-     }
+    const authHeader = req.get('authorization')
+
+    if (!authHeader) {
+      return res.status(401).json({ message: "cadê o auth???" })
+    }
+    const token = authHeader.split(" ")[1]
+    await jwt.verify(token, SECRET, async function (erro) {
+      if (erro) {
+        return res.status(403).send("não funcionou")
+      }
+      const findPokemon = await PokedexModel
+        .findById(req.params.id).populate('coach')
+
+      if (findPokemon == null) {
+        return res.status(404).json({ message: "pokemon não encontrado." })
+      }
 
       res.status(200).json(findPokemon)
+    })
   } catch (error) {
-    res.status(500).json({ message: error.message})
+    res.status(500).json({ message: error.message })
   }
 }
 
@@ -67,12 +80,12 @@ const updatePokemonById = async (req, res) => {
     const { coachId, name, type, abilities, description } = req.body
     const findPokemon = await PokedexModel.findById(id)
     if (findPokemon == null) {
-      return res.status(404).json({ message: "pokemon não encontrado."})
+      return res.status(404).json({ message: "pokemon não encontrado." })
     }
     if (coachId) {
       const findCoach = await CoachModel.findById(coachId)
       if (findCoach == null) {
-        return res.status(404).json({ message: 'Treinador não foi encontrado'})
+        return res.status(404).json({ message: 'Treinador não foi encontrado' })
       }
     }
     // if (name) findPokemon.name = name
@@ -91,6 +104,6 @@ const updatePokemonById = async (req, res) => {
 }
 
 module.exports = {
-   createPokemon, findAllPokemons, findPokemonById, updatePokemonById
+  createPokemon, findAllPokemons, findPokemonById, updatePokemonById
 
 }
