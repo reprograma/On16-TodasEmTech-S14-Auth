@@ -8,7 +8,7 @@ const createCoach = async (req, res) => {
     if (!authHeader) {
       return res.status(401).send("You need an authorization");
     }
-    const token = authHeader.split(" ", [1]);
+    const token = authHeader.split(" ")[1];
     await jwt.verify(token, SECRET, async function (erro) {
       if (erro) {
         return res.status(403).send("Access denied");
@@ -38,7 +38,7 @@ const findAllCoaches = async (req, res) => {
     if (!authHeader) {
       return res.status(401).send("You need an authorization");
     }
-    const token = authHeader.split(" ", [1]);
+    const token = authHeader.split(" ")[1];
     await jwt.verify(token, SECRET, async function (erro) {
       if (erro) {
         return res.status(403).send("Access denied");
@@ -58,7 +58,7 @@ const findCoachById = async (req, res) => {
     if (!authHeader) {
       return res.status(401).send("You need an authorization");
     }
-    const token = authHeader.split(" ", [1]);
+    const token = authHeader.split(" ")[1];
     await jwt.verify(token, SECRET, async function (erro) {
       if (erro) {
         return res.status(403).send("Access denied");
@@ -78,7 +78,7 @@ const updateCoach = async (req, res) => {
     if (!authHeader) {
       return res.status(401).send("You need an authorization");
     }
-    const token = authHeader.split(" ", [1]);
+    const token = authHeader.split(" ")[1];
     await jwt.verify(token, SECRET, async function (erro) {
       if (erro) {
         return res.status(403).send("Access denied");
@@ -106,7 +106,7 @@ const deleteCoach = async (req, res) => {
     if (!authHeader) {
       return res.status(401).send("You need an authorization");
     }
-    const token = authHeader.split(" ", [1]);
+    const token = authHeader.split(" ")[1];
     await jwt.verify(token, SECRET, async function (erro) {
       if (erro) {
         return res.status(403).send("Access denied");

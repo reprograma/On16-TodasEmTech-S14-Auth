@@ -4,8 +4,8 @@ const jwt = require('jsonwebtoken')
 const SECRET = process.env.SECRET
 
 const create = (req, res) => {
-    const passwordComHash = bcrypt.hashSync(req.body.password, 10);
-    req.body.password = passwordComHash;
+    const passwordWithHash = bcrypt.hashSync(req.body.password, 10);
+    req.body.password = passwordWithHash;
     const user = new Users(req.body);
     user.save(function (err){
         if (err) {
@@ -44,7 +44,7 @@ const login = (req, res) => {
     if (!user){
         return res.status(404).send(`There is no user registered with this email: ${email}`);
     };
-    const validPassword = bcrypt.compareSync (req.body.password, user.password);
+    const validPassword = bcrypt.WithpareSync (req.body.password, user.password);
     if (!validPassword){
         return res.status(403).send('Incorrect password. Try again later.');
     };

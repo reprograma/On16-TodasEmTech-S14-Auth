@@ -9,7 +9,7 @@ const createPokemon = async (req, res) => {
     if (!authHeader) {
       return res.status(401).send("You need an authorization");
     }
-    const token = authHeader.split(" ", [1]);
+    const token = authHeader.split(" ")[1];
     await jwt.verify(token, SECRET, async function (erro) {
       if (erro) {
         return res.status(403).send("Access denied");
@@ -45,7 +45,7 @@ const findAllPokemons = async (req, res) => {
     if (!authHeader) {
       return res.status(401).send("You need an authorization");
     }
-    const token = authHeader.split(" ", [1]);
+    const token = authHeader.split(" ")[1];
     await jwt.verify(token, SECRET, async function (erro) {
       if (erro) {
         return res.status(403).send("Access denied");
@@ -64,7 +64,7 @@ const findPokemonById = async (req, res) => {
     if (!authHeader) {
       return res.status(401).send("You need an authorization");
     }
-    const token = authHeader.split(" ", [1]);
+    const token = authHeader.split(" ")[1];
     await jwt.verify(token, SECRET, async function (erro) {
       if (erro) {
         return res.status(403).send("Access denied");
@@ -88,7 +88,7 @@ const updatePokemonById = async (req, res) => {
     if (!authHeader) {
       return res.status(401).send("You need an authorization");
     }
-    const token = authHeader.split(" ", [1]);
+    const token = authHeader.split(" ")[1];
     await jwt.verify(token, SECRET, async function (erro) {
       if (erro) {
         return res.status(403).send("Access denied");
@@ -125,7 +125,7 @@ const deletePokemon = async (req, res) => {
     if (!authHeader) {
       return res.status(401).send("You need an authorization");
     }
-    const token = authHeader.split(" ", [1]);
+    const token = authHeader.split(" ")[1];
     await jwt.verify(token, SECRET, async function (erro) {
       if (erro) {
         return res.status(403).send("Access denied");
