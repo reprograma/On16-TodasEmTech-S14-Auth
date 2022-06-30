@@ -66,25 +66,29 @@ const findAllPokemons = async (req, res) => {
 
 const findPokemonById = async(req, res) => {
   try {
-    const findPokemon = await PokedexModel
-      .findById(req.params.id).populate('coach')
-    
-     if (findPokemon == null) {
-      return res.status(404).json({ message: "pokemon não encontrado."})
-     }
+    const authHeader = req.get('authorization')
+    if(!authHeader){
+      return res.status(401).send('Cade o authorization')
+    }
+    const token = authHeader.split(' ')[1]
 
-      res.status(200).json(findPokemon)
+    await jwt.verify(token, SECRET, async function(erro){
+      if(erro){
+        return res.status(403).send('Não vai rolar')
+      }
+      const findPokemon = await PokedexModel.findById(req.params.id).populate('coach')
+    
+      if (findPokemon == null) {
+       return res.status(404).json({ message: "pokemon não encontrado."})
+      }
+ 
+       res.status(200).json(findPokemon)
+    })
   } catch (error) {
     res.status(500).json({ message: error.message})
   }
 }
 
-/**
- * 
- * 1. verificar se o pokemon existe [ x ]
- * 2. verificar se o coachId recebido existe
- * 3. verificar se o dado recebido é valido
- */
 const updatePokemonById = async (req, res) => {
   try {
     const { id } = req.params
