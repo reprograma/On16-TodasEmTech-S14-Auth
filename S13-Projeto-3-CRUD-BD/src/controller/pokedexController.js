@@ -1,8 +1,22 @@
 const PokedexModel = require('../models/pokedexModel')
 const CoachModel = require('../models/coachModel')
+const jwt = require('jsonwebtoken'); // carrega lib jwt
+const SECRET = process.env.SECRET //carrega secret do arquivo de env
+
 
 const createPokemon = async (req, res) => {
    try {
+    const authHeader =req.get('authorization')
+    if(!authHeader){
+      return res.status(401).send("Cade authorization?")
+    }
+ 
+    const token = authHeader.split(' ')[1]
+    await jwt.verify(token,SECRET,async function(erro){
+      if(erro){
+        return res.status(403).send("não vai rolar")
+     }
+
      const { coachId, name, type, abilities, description } = req.body //  <-
      
      if (!coachId) {
@@ -25,23 +39,53 @@ const createPokemon = async (req, res) => {
 
      res.status(200).json(savedPokemon)
 
-   } catch (error) {
+   })
+
+   }catch (error){
     console.error(error)
     res.status(500).json({ message: error.message })
-   }
+  
 }
+ }
+
+
+
 
 const findAllPokemons = async (req, res) => {
    try {
+    const authHeader =req.get('authorization')
+    if(!authHeader){
+      return res.status(401).send("Cade authorization?")
+    }
+ 
+    const token = authHeader.split(' ')[1]
+    await jwt.verify(token,SECRET,async function(erro){
+      if(erro){
+        return res.status(403).send("não vai rolar")
+     }
+    
+
       const allPokemons = await PokedexModel.find().populate('coach')
       res.status(200).json(allPokemons)
-   } catch (error) {
+    })
+   }catch (error) {
     res.status(500).json({ message: error.message})
-   }
+}
 }
 
 const findPokemonById = async(req, res) => {
   try {
+    const authHeader =req.get('authorization')
+    if(!authHeader){
+      return res.status(401).send("Cade authorization?")
+    }
+ 
+    const token = authHeader.split(' ')[1]
+    await jwt.verify(token,SECRET,async function(erro){
+      if(erro){
+        return res.status(403).send("não vai rolar")
+     }
+
     const findPokemon = await PokedexModel
       .findById(req.params.id).populate('coach')
     
@@ -50,9 +94,10 @@ const findPokemonById = async(req, res) => {
      }
 
       res.status(200).json(findPokemon)
-  } catch (error) {
-    res.status(500).json({ message: error.message})
-  }
+  } )
+}catch (error) {
+  res.status(500).json({ message: error.message})
+}
 }
 
 /**
@@ -63,6 +108,17 @@ const findPokemonById = async(req, res) => {
  */
 const updatePokemonById = async (req, res) => {
   try {
+    const authHeader =req.get('authorization')
+    if(!authHeader){
+      return res.status(401).send("Cade authorization?")
+    }
+ 
+    const token = authHeader.split(' ')[1]
+    await jwt.verify(token,SECRET,async function(erro){
+      if(erro){
+        return res.status(403).send("não vai rolar")
+     }
+
     const { id } = req.params
     const { coachId, name, type, abilities, description } = req.body
     const findPokemon = await PokedexModel.findById(id)
@@ -84,10 +140,11 @@ const updatePokemonById = async (req, res) => {
 
     const savedPokemon = await findPokemon.save()
     res.status(200).json(savedPokemon)
-  } catch (error) {
-    console.error(error)
-    res.status(500).json({ message: error.message })
-  }
+  })
+}catch (error) {
+  console.error(error)
+  res.status(500).json({ message: error.message })
+}
 }
 
 module.exports = {
