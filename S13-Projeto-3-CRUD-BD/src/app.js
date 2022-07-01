@@ -7,9 +7,7 @@ const colaboradorasRoutes = require('./routes/colaboradorasRoutes')
 
 const app = express()
 
-// 1. body parse
-// 2. deixar a api publica
-// 3. conectar o banco
+
 app.use(express.json())
 app.use(cors())
 
