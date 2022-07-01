@@ -1,15 +1,12 @@
-// 1.controller
-// 2. ajuda do express
+const controller = require("../controller/coachController.js");
+const express = require("express");
 
-const controller = require('../controller/coachController')
-const express = require('express')
+const router = express.Router();
 
-const router = express.Router()
+router.post("/coach", controller.createCoach);
+router.get("/coaches", controller.findAllCoaches)
+router.patch("/coach/:id", controller.updateCoach)
+router.delete("/coach/:id", controller.deleteCoach)
+router.get("/coach/:id", controller.findCoachById)
 
-router.post("/treinador", controller.createCoach)
-router.get("/treinadores", controller.findAllCoaches)
-router.get("/treinadores/:id", controller.findCoachById)
-router.patch("/treinador/:id", controller.updateCoach)
-router.delete("/treinador/:id", controller.deleteCoach)
-
-module.exports = router
+module.exports = router;

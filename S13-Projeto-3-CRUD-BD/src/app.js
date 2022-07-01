@@ -1,21 +1,20 @@
-const express = require('express')
-const cors = require('cors')
-const mongoose = require('./database/mongooseConnect')
-const coachRoutes = require('./routes/coachRoutes')
-const pokedexRoutes = require('./routes/pokedexRoutes')
+require('dotenv-safe').config();
+const express = require("express");
+const cors = require("cors");
+const mongoose = require("./database/mongooseConnect.js");
+const coachRoutes = require("./routes/coachRoutes.js");
+const pokedexRoutes = require("./routes/pokedexRoutes.js");
+const colaboradorasRoutes = require("./routes/colaboradorasRoutes.js");
 
-const app = express()
+const app = express();
 
-// 1. body parse
-// 2. deixar a api publica
-// 3. conectar o banco
-app.use(express.json())
-app.use(cors())
+app.use(express.json());
+app.use(cors());
 
-mongoose.connect()
+mongoose.connect();
 
-app.use(coachRoutes)
-app.use(pokedexRoutes)
+app.use(coachRoutes);
+app.use(pokedexRoutes);
+app.use(colaboradorasRoutes);
 
-module.exports = app
-
+module.exports = app;
