@@ -1,4 +1,4 @@
-const DATABASE_URI = "mongodb+srv://apimusica:1234abcd@cluster0.mt9gn.mongodb.net/projeto_db"
+process.env.DATABASE_URI 
 
 const mongoose = require('mongoose')
 
@@ -9,7 +9,7 @@ const connect = async() => {
       useUnifiedTopology: true
      })
 
-     console.log('banco conectado! ')
+     console.log('banco conectado!')
    } catch (error) {
     console.error(error)
    }
