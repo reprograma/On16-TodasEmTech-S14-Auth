@@ -1,23 +1,22 @@
-# On16-TodasEmTech-S13-Projeto-3-CRUD-BD
-Turma Online 16 - Todas em Tech | Back-end | 2022 | Semana 13 - Projeto Guiado CRUD com MongoDB
+![download](https://user-images.githubusercontent.com/100974682/171773873-d48bfcdb-0921-45a4-8d7a-c31048ff0c78.png)
+<h1 align="center">
+    <br>
+    <p align="center"># On16-TodasEmTech-S13-Projeto-3-CRUD-BD
+Turma Online 16 - Todas em Tech | Back-end | 2022 | Semana 13 - Projeto Guiado CRUD com MongoDB 🚀 <p> 
+</h1>
 
-## Olá, prazer em conhece-las💜
 
-Um pouquinho sobre mim.  Meu nome é Beatriz Ramerindo, sou engenheira de software, não possui faculdade, trabalho com enfãse em desenvolvimento back-end de produto, nas stacks de Spring com Koltin e e Express/Node com Typescript/Javascript.  Sou tão apaixonada por Js que ganhei uma caneca da mesma, apaixonada que só né, amo falar sobre, mas porque raios afinal `0 + null = 0?`. Prazer em conhece-las, quem curtir ai um anime de um pirata que estica e/ou curti um lolzinho, chama no PV depois e bora criar umas teoria ai ou uma flex?
+## Por onde começamos?
 
-- Chamada, apresentação das monitoras e acordos:
+Um pouquinho sobre mim.  Meu nome é Bárbara Gonçalves, sou estudante de  back-end no reprograma, com ênfase em Javascript.  
+
 
 <img src="https://i.pinimg.com/474x/b4/17/86/b41786b5e7627ed0c678a0ef4a62e9f6.jpg" alt="video chamada" width="200">
 
-* Caso queira fazer uma pergunta, levante a mão por favor.
-* Enviar as dúvidas no chat, assim minhas queridas monitoras podem ajudar.
-* Manter microfone desligado quando outras pessoas estiverem falando
-* Manter câmera ligada o máximo possível
-* momento de olho na tela, sim depois deixo copiar 😌
-
 <br>
 <br>
 
+# 🧠Falando um pouquinho do contexto
 ## Revisão
 
 ### `1. Por que precisamos de um banco de dados?`
@@ -300,7 +299,7 @@ coach { // 'coach' nome da key 'chave' da schema
 
 ### Regras de negócio
 
-- [ ]  Não deverá ser possível criar mais de um treinador com o mesmo nome
+- [ ]  Não deverá ser possível criar treinador com o mesmo nome
 - [ ]  Para criar um novo pokemon, deverá vincular no momento da criação a um treinador já existente no sistema, utilizando o numero do id do treinador correspondente no corpo da requisição
 
 <br>
@@ -355,7 +354,7 @@ coach { // 'coach' nome da key 'chave' da schema
 - type: texto e obrigatório
 - abilities: array de texto, opcional e com default []
 - description: texto e opcional
-
+- avaliable: bolean e opcional com o default true
 
 ### API deve retornar seguinte JSON:
 
@@ -415,8 +414,6 @@ coach { // 'coach' nome da key 'chave' da schema
 <br>
 
 
-##  🎓 Combinado da semana
- - [PARA O LAR](./para_o_lar//instru%C3%A7%C3%B5es.md) < clique aqui
 
 ## 📖 Referências
 - https://www.gartner.com/en/information-technology/glossary/object-data-model
@@ -436,9 +433,8 @@ coach { // 'coach' nome da key 'chave' da schema
 - [O que é banco de dados? - Curso em Video](https://www.youtube.com/watch?v=Ofktsne-utM)
 
 ## 👋🏾 Minhas redes sociais
- - [LINKEDIN](https://www.linkedin.com/in/beatriz-ramerindo/)
- - [GITHUB](https://github.com/isjanebia)
- - [INSTAGRAN](https://www.instagram.com/isjanebea/)
- - [site] [beatriz.rarmerindo.com.br](beatriz.ramerindo.com.br)
- - [email] bea@ramerindo.com.br
+- [linkedin](https://www.linkedin.com/in/b%C3%A1rbara-gon%C3%A7alves-211b5691/)
+- [github](https://github.com/idbabis) 
+- E-mail: idbabis@gmail.com
+---
 
