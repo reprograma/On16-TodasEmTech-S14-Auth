@@ -12,3 +12,5 @@ conecto o banco [x]
 criou a model [x]
 criar a controller <
 criar as rotas e importar no app
+
+//mongodb+srv://idbabis:Barbara_16!@cluster0.4pdrv.mongodb.net/projeto_auth
