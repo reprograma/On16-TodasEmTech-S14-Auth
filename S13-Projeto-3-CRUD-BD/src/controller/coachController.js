@@ -13,9 +13,9 @@ const SECRET = process.env.SECRET
 
 const createCoach = async (req, res) => {
    try {
-    const authHeader =req.get('autorization')
+    const authHeader =req.get('authorization')
     if(!authHeader){
-      return res.status(401).send("Cade autorization?")
+      return res.status(401).send("Cade authorization?")
     }
  
     const token = authHeader.split(' ')[1]
@@ -42,9 +42,9 @@ const createCoach = async (req, res) => {
 
 const findAllCoaches = async (req, res) => {
   try {
-    const authHeader =req.get('autorization')
+    const authHeader =req.get('authorization')
     if(!authHeader){
-      return res.status(401).send("Cade autorization?")
+      return res.status(401).send("Cade authorization?")
     }
 
     const token = authHeader.split(' ')[1]
@@ -67,9 +67,9 @@ const findAllCoaches = async (req, res) => {
 
 const findCoachById = async (req, res) => {
    try {
-    const authHeader =req.get('autorization')
+    const authHeader =req.get('authorization')
     if(!authHeader){
-      return res.status(401).send("Cade autorization?")
+      return res.status(401).send("Cade authorization?")
     }
  
     const token = authHeader.split(' ')[1]
@@ -116,9 +116,9 @@ const updateCoach = async (req, res) => {
 
 const deleteCoach = async (req, res) => {
    try {
-    const authHeader =req.get('autorization')
+    const authHeader =req.get('authorization')
     if(!authHeader){
-      return res.status(401).send("Cade autorization?")
+      return res.status(401).send("Cade authorization?")
     }
  
     const token = authHeader.split(' ')[1]

@@ -6,9 +6,9 @@ const SECRET = process.env.SECRET //carrega secret do arquivo de env
 
 const createPokemon = async (req, res) => {
    try {
-    const authHeader =req.get('autorization')
+    const authHeader =req.get('authorization')
     if(!authHeader){
-      return res.status(401).send("Cade autorization?")
+      return res.status(401).send("Cade authorization?")
     }
  
     const token = authHeader.split(' ')[1]
@@ -53,9 +53,9 @@ const createPokemon = async (req, res) => {
 
 const findAllPokemons = async (req, res) => {
    try {
-    const authHeader =req.get('autorization')
+    const authHeader =req.get('authorization')
     if(!authHeader){
-      return res.status(401).send("Cade autorization?")
+      return res.status(401).send("Cade authorization?")
     }
  
     const token = authHeader.split(' ')[1]
@@ -75,9 +75,9 @@ const findAllPokemons = async (req, res) => {
 
 const findPokemonById = async(req, res) => {
   try {
-    const authHeader =req.get('autorization')
+    const authHeader =req.get('authorization')
     if(!authHeader){
-      return res.status(401).send("Cade autorization?")
+      return res.status(401).send("Cade authorization?")
     }
  
     const token = authHeader.split(' ')[1]
@@ -108,9 +108,9 @@ const findPokemonById = async(req, res) => {
  */
 const updatePokemonById = async (req, res) => {
   try {
-    const authHeader =req.get('autorization')
+    const authHeader =req.get('authorization')
     if(!authHeader){
-      return res.status(401).send("Cade autorization?")
+      return res.status(401).send("Cade authorization?")
     }
  
     const token = authHeader.split(' ')[1]
