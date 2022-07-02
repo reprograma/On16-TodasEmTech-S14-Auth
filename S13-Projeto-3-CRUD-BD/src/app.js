@@ -3,8 +3,9 @@ const cors = require('cors')
 const mongoose = require('./database/mongooseConnect')
 const coachRoutes = require('./routes/coachRoutes')
 const pokedexRoutes = require('./routes/pokedexRoutes')
-
+const colaboradorasRoutes = require('./routes/colaboradorasRoutes')
 const app = express()
+require('dotenv-safe').config();
 
 // 1. body parse
 // 2. deixar a api publica
@@ -16,6 +17,8 @@ mongoose.connect()
 
 app.use(coachRoutes)
 app.use(pokedexRoutes)
+app.use(colaboradorasRoutes)
+
 
 module.exports = app
 
