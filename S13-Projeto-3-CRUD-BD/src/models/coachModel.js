@@ -7,9 +7,9 @@ const coachSchema = mongoose.Schema({
   },
 
   name: {
-    type: String, // " " -> representa um texto
-    required: true, // esse campo é obrigatório
-    unique: true, // eu digo que não aceito mais de um nome no sistema igual
+    type: String,
+    required: true,
+    unique: true,
   },
 
   team: String,
@@ -29,7 +29,7 @@ const coachSchema = mongoose.Schema({
     default: "Não Informado."
   }
 
-}, { timestamps: true }) // gera automaticamente as datas de atualizacao e criação
+}, { timestamps: true })
 
 const Model = mongoose.model('coach', coachSchema)
 
