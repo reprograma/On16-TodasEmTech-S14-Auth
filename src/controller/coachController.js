@@ -1,16 +1,3 @@
-// post -> criar um treinador
-// get -> visualizar todos os treinadores
-// get -> visualizar um treinador por id
-// patch -> 
-// delete ->
-
-/**
- * 
- * const { name, age, team } = req.body
- * const age = req.body.age
- * const name = req.body.name
- * const team = req.body.team
- */
 const CoachModel = require('../models/coachModel')
 const jwt = require('jsonwebtoken')
 const SECRET = process.env.SECRET

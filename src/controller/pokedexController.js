@@ -136,12 +136,6 @@ const findPokemonById = async (req, res) => {
   }
 }
 
-/**
- * 
- * 1. verificar se o pokemon existe [ x ]
- * 2. verificar se o coachId recebido existe
- * 3. verificar se o dado recebido é valido
- */
 const updatePokemonById = async (req, res) => {
   try {
 
@@ -191,7 +185,7 @@ const updatePokemonById = async (req, res) => {
         })
       }
     }
-    // if (name) findPokemon.name = name
+    
     findPokemon.name = name || findPokemon.name
     findPokemon.type = type || findPokemon.type
     findPokemon.abilities = abilities || findPokemon.abilities
