@@ -3,6 +3,7 @@ const cors = require('cors')
 const mongoose = require('./database/mongooseConnect')
 const coachRoutes = require('./routes/coachRoutes')
 const pokedexRoutes = require('./routes/pokedexRoutes')
+const colaboradorasRoutes = require('./routes/colaboradorasRoutes')
 
 const app = express()
 
@@ -16,6 +17,7 @@ mongoose.connect()
 
 app.use(coachRoutes)
 app.use(pokedexRoutes)
+app.use(colaboradorasRoutes)
 
 module.exports = app
 
