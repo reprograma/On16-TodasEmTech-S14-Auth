@@ -29,7 +29,9 @@ const coachSchema = mongoose.Schema({
     default: "Não Informado."
   }
 
-}, { timestamps: true }) // gera automaticamente as datas de atualizacao e criação
+}, {
+  timestamps: true
+}) // gera automaticamente as datas de atualizacao e criação
 
 const Model = mongoose.model('coach', coachSchema)
 
