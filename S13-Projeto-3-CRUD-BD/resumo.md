@@ -1,9 +1,11 @@
+
 touch .gitignore
 touch server.js
 npm init -y
 npm i express cors
 npm i -D nodemon
 npm i mongoose
+npm i --save-dev dotenv
 mkdir src
 touch src/app.js
 
