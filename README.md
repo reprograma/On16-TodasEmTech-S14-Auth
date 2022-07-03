@@ -243,7 +243,7 @@ Seguiremos a ordem de instalações no terminal:
 
 **`POST/LOGIN`** Aterar informação específica dentro de um titulo por id específico e retorna o título alterado. |`localhost:1313/users/login/`;
 
-**`Proteção`** Para testar via Thunder Client ou Postman, passar bearer token no header de autenticação $ Bearer TOKEN_JWT_AQUI
+**`PROTEÇÃO`** Para testar via Thunder Client ou Postman, passar bearer token no header de autenticação $ Bearer TOKEN_JWT_AQUI
 
 </br>
 
