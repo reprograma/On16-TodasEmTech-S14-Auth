@@ -41,6 +41,9 @@ const deleteById = async (req, res) => {
 
 const login = (req, res) => { //para login vou precisar passar email e senha no body da solicitação
     Colaboradoras.findOne({ email: req.body.email }, function (error, colaboradora){
+        if (error) {
+            return res.status(500).send({message: 'Erro interno'})
+        }
         if (!colaboradora) {
             return res.status(400).send(`Não existe colaboradora com o email ${req.body.email}`)
         }
