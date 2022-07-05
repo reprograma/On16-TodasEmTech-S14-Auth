@@ -70,12 +70,22 @@ const findCoachById = async (req, res) => {
 
 const updateCoach = async (req, res) => {
   try {
-    const { name, age, region, team, gender } = req.body
-    const updatedCoach = await CoachModel
-      .findByIdAndUpdate(req.params.id, {
-        name, age, region, team, gender
-      })
-    res.status(200).json(updatedCoach)
+    const authHeader = req.get('authorization')
+    if (!authHeader) {
+      return res.status(401).send('Sem autorização!')
+    }
+    const token = authHeader.split(' ')[1]
+    await jwt.verify(token, SECRET, async function (erro) {
+      if (erro) {
+        return res.status(403).send('Senha não autorizada')
+      }
+      const { name, age, region, team, gender } = req.body
+      const updatedCoach = await CoachModel.findByIdAndUpdate(req.params.id, 
+        {
+          name, age, region, team, gender
+        })
+      res.status(200).json(updatedCoach)
+    })
   } catch (error) {
     console.error(error)
     res.status(500).json({ message: error.message })
