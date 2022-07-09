@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const PokedexSchema = mongoose.Schema({
+const PokedexSchema = new mongoose.Schema({
    _id: {
     type: mongoose.Schema.Types.ObjectId,
     default: mongoose.Types.ObjectId
@@ -28,7 +28,11 @@ const PokedexSchema = mongoose.Schema({
     required: true,
     ref: 'coach'
    }
-}, { timestamps: true })
+}, { timestamps: true },
+{
+   versionKey: false
+});
 
 const Model = mongoose.model('pokedex', PokedexSchema)
+
 module.exports = Model
