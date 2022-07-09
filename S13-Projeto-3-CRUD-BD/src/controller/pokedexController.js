@@ -1,12 +1,28 @@
 const PokedexModel = require('../models/pokedexModel')
 const CoachModel = require('../models/coachModel')
+const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
+const SECRET = process.env.SECRET //
 
+//
 const createPokemon = async (req, res) => {
    try {
+    
+     const authHeader = req.get('authorization')
+     if(!authHeader) {
+      return res.status(401).send('è obrigatório autorização')
+     }
+
+     const token = authHeader.split(' ')[1]
+     await jwt.verify(token, SECRET, async function(erro) {
+      if(erro) {
+        return res.status(403).send('Não vai rolar!')
+      }
+
      const { coachId, name, type, abilities, description } = req.body //  <-
      
      if (!coachId) {
-       return res.status(400).json({ message: 'É obrigatorio o id do treinador'})
+       return res.status(400).json({ message: 'O id do treinador é obrigatório'})
       }
 
       const findCoach = await CoachModel.findById(coachId)
@@ -23,7 +39,9 @@ const createPokemon = async (req, res) => {
 
      const savedPokemon = await newPokemon.save()
 
-     res.status(200).json(savedPokemon)
+     res.status(200).json(savedPokemon) 
+     })
+     
 
    } catch (error) {
     console.error(error)
@@ -31,17 +49,42 @@ const createPokemon = async (req, res) => {
    }
 }
 
+
+//
 const findAllPokemons = async (req, res) => {
    try {
-      const allPokemons = await PokedexModel.find().populate('coach')
-      res.status(200).json(allPokemons)
+    const authHeader = req.get('authorization')
+    if(!authHeader) {
+      return res.status(401).send('è obrigatório autorização')
+    }
+    
+    const token = authHeader.split(' ')[1]
+    await jwt.verify(token, SECRET,async function(erro) {
+      if(erro) {
+        return res.status(403).send('Sem a autorização, não pode prosseguir.')
+      }
+    const allPokemons = await PokedexModel.find().populate('coach')
+      res.status(200).json(allPokemons)  
+    })
+    
    } catch (error) {
     res.status(500).json({ message: error.message})
    }
 }
 
+//
 const findPokemonById = async(req, res) => {
   try {
+    const authHeader = req.get('authorization')
+    if(!authHeader) {
+      return res.status(401).send('è obrigatório autorização')
+    }
+
+    const token = authHeader.split(' ')[1]
+    await jwt.verify(token, SECRET, async function(erro) {
+      if(erro) {
+        return res.status(403).send('Sem a autorização, não pode prosseguir')
+      }
     const findPokemon = await PokedexModel
       .findById(req.params.id).populate('coach')
     
@@ -49,7 +92,9 @@ const findPokemonById = async(req, res) => {
       return res.status(404).json({ message: "pokemon não encontrado."})
      }
 
-      res.status(200).json(findPokemon)
+      res.status(200).json(findPokemon)  
+    })
+    
   } catch (error) {
     res.status(500).json({ message: error.message})
   }
@@ -61,8 +106,21 @@ const findPokemonById = async(req, res) => {
  * 2. verificar se o coachId recebido existe
  * 3. verificar se o dado recebido é valido
  */
+// Rota para atualizar
 const updatePokemonById = async (req, res) => {
   try {
+
+    const authHeader = req.get('authorization')
+    if(!authHeader) {
+      return res.status(401).send('è obrigatório autorização')
+    }
+  
+    const token = authHeader.split(' ')[1]
+    await jwt.verify(token, SECRET, async function(erro) {
+      if(erro) {
+        return res.status(403).send('Sem a autorização, não pode prosseguir!')
+      }
+
     const { id } = req.params
     const { coachId, name, type, abilities, description } = req.body
     const findPokemon = await PokedexModel.findById(id)
@@ -75,7 +133,8 @@ const updatePokemonById = async (req, res) => {
         return res.status(404).json({ message: 'Treinador não foi encontrado'})
       }
     }
-    // if (name) findPokemon.name = name
+
+     // if (name) findPokemon.name = name
     findPokemon.name = name || findPokemon.name
     findPokemon.type = type || findPokemon.type
     findPokemon.abilities = abilities || findPokemon.abilities
@@ -84,13 +143,52 @@ const updatePokemonById = async (req, res) => {
 
     const savedPokemon = await findPokemon.save()
     res.status(200).json(savedPokemon)
+  })
+   
   } catch (error) {
     console.error(error)
     res.status(500).json({ message: error.message })
   }
 }
+// Rota para deletar
+const deletePokemonById = async (req, res) => {
+  try {
 
-module.exports = {
-   createPokemon, findAllPokemons, findPokemonById, updatePokemonById
+    const authHeader = req.get('authorization')
+    if(!authHeader) {
+      return res.status(401).send('è obrigatório autorização')
+    }
+  
+    const token = authHeader.split(' ')[1]
+    
+    await jwt.verify(token, SECRET, async function(erro) {
+      
+      if(erro) {
+        return res.status(403).send('Sem a autorização, não pode prosseguir')
+      }
+    })
+    const { id } = req.params
+    const findPokemon = await PokedexModel.findById(id)
 
+    if (findPokemon == null) {
+      return res.status(404).json({ message: `O pokemon com o id# ${id} não foi encontrado.`})
+    }
+
+    await findPokemon.remove()
+    res.status(200).json({ message: `Sucesso ao deletar O pokemon ${findPokemon.name}.`
+  })
+  
+  }catch (error) {
+    console.error(error)
+    res.status(500).json({ message: error.message })
+  }
+}
+
+
+  module.exports = {
+  createPokemon,
+  findAllPokemons,
+  findPokemonById,
+  updatePokemonById,
+  deletePokemonById
 }
