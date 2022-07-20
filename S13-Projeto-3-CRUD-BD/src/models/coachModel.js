@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const coachSchema = mongoose.Schema({
+const CoachSchema = mongoose.Schema({
   _id: {
     type: mongoose.Schema.Types.ObjectId,
     default: mongoose.Types.ObjectId
@@ -31,6 +31,6 @@ const coachSchema = mongoose.Schema({
 
 }, { timestamps: true }) // gera automaticamente as datas de atualizacao e criação
 
-const Model = mongoose.model('coach', coachSchema)
+const Model = mongoose.model('coach', CoachSchema)
 
 module.exports = Model
