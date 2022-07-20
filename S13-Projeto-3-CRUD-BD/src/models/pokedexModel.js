@@ -26,7 +26,7 @@ const PokedexSchema = mongoose.Schema({
    coach: {
     type: mongoose.Schema.Types.ObjectId,
     required: true,
-    ref: 'coach'
+    ref: "coach"
    }
 }, { timestamps: true })
 
