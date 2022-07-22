@@ -41,7 +41,7 @@ const deleteById = async (req, res) => {
 const login = (req, res) => {
     Colaboradoras.findOne({ email: req.body.email }, function (error, colaboradora) {
         if (error) {
-            return res.status(500).send({ message: 'ERRO!' })
+            return res.status(500).send({ message: 'ERRO' })
         }
         if (!colaboradora) {
             return res.status(404).send(`Não existe colaboradora com o e-mail ${req.body.email}`)
@@ -50,7 +50,7 @@ const login = (req, res) => {
         const senhaValida = bcrypt.compareSync(req.body.senha, colaboradora.senha)
 
         if (!senhaValida) {
-            return res.status(403).send('A senha esta incorreta. Tente novamente.')
+            return res.status(403).send('que senha é essa?')
         }
 
         const token = jwt.sign({ email: req.body.email }, SECRET)
