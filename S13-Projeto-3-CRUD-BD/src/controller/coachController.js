@@ -1,18 +1,6 @@
-
-// post -> criar um treinador
-// get -> visualizar todos os treinadores
-// get -> visualizar um treinador por id
-// patch -> 
-// delete ->
-
-/**
- * 
- * const { name, age, team } = req.body
- * const age = req.body.age
- * const name = req.body.name
- * const team = req.body.team
- */
 const CoachModel = require('../models/coachModel')
+
+
 const createCoach = async (req, res) => {
    try {
       const { name, team, region, age, gender } = req.body
@@ -77,5 +65,9 @@ const deleteCoach = async (req, res) => {
 }
 
 module.exports =  {
-  createCoach, findAllCoaches, updateCoach, deleteCoach, findCoachById
+  createCoach,
+  findAllCoaches,
+  updateCoach,
+  deleteCoach,
+  findCoachById
 }
