@@ -2,4 +2,6 @@
 // 2. definir uma porta e ouvi-la
 const app = require('./src/app')
 
-app.listen(8000, () => console.log(`fé no pai que agora vai, porta: 8000`))
+const DB_PORT = process.env.DB_PORT
+
+app.listen(DB_PORT, () => console.log(`servidor rodando na porta: ${DB_PORT}`));
